@@ -27,8 +27,8 @@ st.header("📖C&C GTM Knowledge GPT")
 sidebar()
 
 uploaded_file = st.file_uploader(
-    "Upload a pdf, docx, or txt file",
-    type=["pdf", "docx", "txt"],
+    "Upload a pdf, docx, pptx, or txt file",
+    type=["pdf", "docx", "txt", "pptx],
     help="Scanned documents are not supported yet!",
     on_change=clear_submit,
 )
