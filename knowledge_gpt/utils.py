@@ -1,6 +1,7 @@
 import re
 from io import BytesIO
 from typing import Any, Dict, List
+from pptx import Presentation
 
 import docx2txt
 import streamlit as st
@@ -82,6 +83,20 @@ def text_to_docs(text: str | List[str]) -> List[Document]:
             doc.metadata["source"] = f"{doc.metadata['page']}-{doc.metadata['chunk']}"
             doc_chunks.append(doc)
     return doc_chunks
+
+@st.experimental_memo()
+def parse_pptx(file: BytesIO) -> str:
+    prs = Presentation(file)
+    text = []
+    for slide in prs.slides:
+        for shape in slide.shapes:
+            if hasattr(shape, "text"):
+                text.append(shape.text)
+
+    text = "\n".join(text)
+    # Remove multiple newlines
+    text = re.sub(r"\n\s*\n", "\n\n", text)
+    return text
 
 
 @st.cache(allow_output_mutation=True, show_spinner=False)

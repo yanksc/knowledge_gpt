@@ -8,6 +8,7 @@ from knowledge_gpt.utils import (
     get_sources,
     parse_docx,
     parse_pdf,
+    parse_pptx,
     parse_txt,
     search_docs,
     text_to_docs,
