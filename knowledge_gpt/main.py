@@ -42,6 +42,9 @@ if uploaded_file is not None:
         doc = parse_docx(uploaded_file)
     elif uploaded_file.name.endswith(".txt"):
         doc = parse_txt(uploaded_file)
+    elif uploaded_file.name.endswith(".pptx"):
+        doc = parse_pptx(uploaded_file)
+
     else:
         raise ValueError("File type not supported!")
     text = text_to_docs(doc)
