@@ -1,5 +1,6 @@
 import streamlit as st
 from openai.error import OpenAIError
+from pptx import Presentation
 
 from knowledge_gpt.components.sidebar import sidebar
 from knowledge_gpt.utils import (
